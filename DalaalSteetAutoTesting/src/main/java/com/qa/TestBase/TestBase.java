@@ -10,11 +10,14 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import com.qa.PageLayer.LoginPage;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestBase {
 	public static WebDriver driver;
 
+	public static LoginPage login;
 	public TestBase() {
 		PageFactory.initElements(driver, this);
 	}
@@ -44,6 +47,10 @@ public class TestBase {
 		driver.navigate().to("https://www.apps.dalalstreet.ai/login");
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
+		login=new LoginPage();
+		login.enterUserName("amarwaghmare573@gmail.com");
+		login.enterPassword("Test@1234");
+		login.clickLoinButton();
 	}
 
 	@AfterMethod
